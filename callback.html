@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OAuth Callback - TrendHunter</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: 50px auto; text-align: center; padding: 20px; }
+        h1 { color: #28a745; }
+        p { color: #666; }
+    </style>
+</head>
+<body>
+    <h1>✓ Autenticación Exitosa</h1>
+    <p>Has sido autenticado correctamente con TikTok.</p>
+    <p>Serás redirigido automáticamente...</p>
+    
+    <script>
+        // TikTok OAuth callback handler
+        // This page handles the OAuth callback from TikTok
+        const hash = window.location.hash;
+        if (hash) {
+            // Parse tokens from hash
+            const params = new URLSearchParams(hash.substring(1));
+            const accessToken = params.get('access_token');
+            const openId = params.get('open_id');
+            
+            if (accessToken) {
+                // Store tokens securely (implementation depends on your backend)
+                console.log('OAuth successful');
+                // Redirect to your app
+                setTimeout(() => {
+                    window.location.href = 'https://trendhunter-ed.netlify.app/';
+                }, 2000);
+            }
+        }
+    </script>
+</body>
+</html>
